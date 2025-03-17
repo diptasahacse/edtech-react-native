@@ -7,6 +7,7 @@ interface IProps {
 }
 export default function CategoryWithCourses({ category }: IProps) {
   const courses = category.getCourse();
+  
   return (
     <View>
       <Text>{category.getCategoryName()}</Text>

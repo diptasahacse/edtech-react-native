@@ -1,14 +1,12 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { CourseModel } from "../../src/models/courseCollectionModel";
+import { Link, router, useRouter } from "expo-router";
 interface IProps {
   course: CourseModel;
 }
 export default function CourseCard({ course }: IProps) {
-  const onBuy = () => {
-    console.log("Buy Now");
-  };
-
+  const router = useRouter();
   return (
     <View style={styles.card}>
       <Image
@@ -18,9 +16,15 @@ export default function CourseCard({ course }: IProps) {
       <Text style={styles.title}>{course.getTitleEn()}</Text>
       <Text style={styles.description}>{course.getDescriptionEn()}</Text>
       <Text style={styles.price}>{course.getPrice()}</Text>
-      <TouchableOpacity style={styles.button} onPress={onBuy}>
-        <Text style={styles.buttonText}>Buy Now</Text>
-      </TouchableOpacity>
+
+      <Link
+        href={{
+          pathname: "/courses/[id]",
+          params: { id: course.getId() },
+        }}
+      >
+        View user details
+      </Link>
     </View>
   );
 }

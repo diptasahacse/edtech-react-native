@@ -14,12 +14,13 @@ const HomePage = () => {
         .getCourseCategories()
         .getData()
     : undefined;
-
+console.log(isLoading)
   if (isLoading) {
     return <HomePageSkeleton />;
   }
 
   if (error) {
+    console.log(error)
     return <View><Text>Error</Text></View>;
   }
 

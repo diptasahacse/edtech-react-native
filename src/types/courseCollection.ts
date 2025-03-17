@@ -27,3 +27,16 @@ export interface ICourse {
   updated_at: string;
   deleted_at: string | null;
 }
+
+export interface ICourseData {
+  courses: ICourse[] | ICourse;
+  course_image_path: string;
+  course_category_image_path: string;
+}
+export interface ICourseCollection {
+  success: true;
+  message_type: string;
+  message: string;
+  code: number;
+  data: ICourseData;
+}

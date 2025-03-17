@@ -1,4 +1,8 @@
-import { ICourse } from "../types/courseCollection";
+import {
+  ICourse,
+  ICourseCollection,
+  ICourseData,
+} from "../types/courseCollection";
 
 export class CourseModel {
   private readonly id: number;
@@ -140,3 +144,60 @@ export class CourseModel {
     return this.deleted_at;
   }
 }
+
+export class CourseDataModel {
+  private readonly courses: CourseModel | CourseModel[];
+  private readonly course_image_path: string;
+  private readonly course_category_image_path: string;
+
+  constructor(data: ICourseData) {
+    this.courses = Array.isArray(data.courses)
+      ? data.courses.map((course) => new CourseModel(course))
+      : new CourseModel(data.courses);
+    this.course_image_path = data.course_image_path;
+    this.course_category_image_path = data.course_category_image_path;
+  }
+
+  getCourses(): CourseModel | CourseModel[] {
+    return this.courses;
+  }
+  getCourseImagePath(): string {
+    return this.course_image_path;
+  }
+  getCourseCategoryImagePath(): string {
+    return this.course_category_image_path;
+  }
+}
+export class CourseCollectionModel {
+  private readonly success: true;
+  private readonly message_type: string;
+  private readonly message: string;
+  private readonly code: number;
+  private readonly data: CourseDataModel;
+
+  constructor(data: ICourseCollection) {
+    this.success = data.success;
+    this.message_type = data.message_type;
+    this.message = data.message;
+    this.code = data.code;
+    this.data = new CourseDataModel(data.data);
+  }
+
+  
+  getSuccess(): true {
+    return this.success;
+  }
+  getMessageType(): string {
+    return this.message_type;
+  }
+  getMessage(): string {
+    return this.message;
+  }
+  getCode(): number {
+    return this.code;
+  }
+  getData(): CourseDataModel {
+    return this.data;
+  }
+}
+

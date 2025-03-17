@@ -64,6 +64,7 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ title: "Home Pages" }} />
+        <Stack.Screen name="courses/[id]" options={{ title: "Course Details Pages" }} />
         <Stack.Screen
           name="modal"
           options={{ presentation: "modal", title: "Modal Screen" }}
