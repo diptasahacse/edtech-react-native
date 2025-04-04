@@ -11,7 +11,7 @@ export class CategoryModel {
   private readonly category_name: string;
   private readonly category_image: string;
   private readonly category_status: number;
-  private readonly course: CourseModel[];
+  private readonly course?: CourseModel[];
   private readonly created_at: string;
   private readonly updated_at: string;
   private readonly deleted_at: string | null;
@@ -21,7 +21,7 @@ export class CategoryModel {
     this.category_name = data.category_name;
     this.category_image = data.category_image;
     this.category_status = data.category_status;
-    this.course = data.course.map((course) => new CourseModel(course));
+    this.course = data.course ? data.course.map((course) => new CourseModel(course)) : undefined;
     this.created_at = data.created_at;
     this.updated_at = data.updated_at;
     this.deleted_at = data.deleted_at;
@@ -38,7 +38,7 @@ export class CategoryModel {
   getCategoryStatus(): number {
     return this.category_status;
   }
-  getCourse(): CourseModel[] {
+  getCourse(): CourseModel[] | undefined {
     return this.course;
   }
   getCreatedAt(): string {

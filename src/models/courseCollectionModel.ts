@@ -3,6 +3,7 @@ import {
   ICourseCollection,
   ICourseData,
 } from "../types/courseCollection";
+import { CategoryModel } from "./categoryCollectionModel";
 
 export class CourseModel {
   private readonly id: number;
@@ -32,6 +33,7 @@ export class CourseModel {
   private readonly created_at: string;
   private readonly updated_at: string;
   private readonly deleted_at: string | null;
+  private readonly course_category?: CategoryModel;
 
   constructor(data: ICourse) {
     this.id = data.id;
@@ -61,6 +63,7 @@ export class CourseModel {
     this.created_at = data.created_at;
     this.updated_at = data.updated_at;
     this.deleted_at = data.deleted_at;
+    this.course_category = data.course_category ? new CategoryModel(data.course_category) : undefined;
   }
   getId(): number {
     return this.id;
@@ -142,6 +145,9 @@ export class CourseModel {
   }
   getDeletedAt(): string | null {
     return this.deleted_at;
+  }
+  getCourseCategory(): CategoryModel | undefined {
+    return this.course_category;
   }
 }
 

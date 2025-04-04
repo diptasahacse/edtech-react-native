@@ -1,3 +1,5 @@
+import { ICategory } from "./categoryCollection";
+
 export interface ICourse {
   id: number;
   title_en: string;
@@ -26,6 +28,7 @@ export interface ICourse {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  course_category?: ICategory
 }
 
 export interface ICourseData {

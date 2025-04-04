@@ -6,7 +6,7 @@ export interface ICategory {
   category_name: string;
   category_image: string;
   category_status: number;
-  course: ICourse[];
+  course?: ICourse[];
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
