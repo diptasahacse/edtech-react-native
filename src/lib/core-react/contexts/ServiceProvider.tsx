@@ -1,8 +1,10 @@
 import { createContext, useContext } from "react";
 import CourseService from "../../core/services/public/CourseService";
+import { AuthService } from "../../core/services/private";
 
 interface IServiceContextState {
   courseService: CourseService;
+  authService: AuthService;
 }
 
 const ServiceContext = createContext<IServiceContextState | null>(null);
@@ -21,8 +23,10 @@ interface ServiceProviderProps {
 
 export const ServiceProvider = ({ children }: ServiceProviderProps) => {
   const courseService = new CourseService();
+  const authService = new AuthService();
   const value: IServiceContextState = {
     courseService,
+    authService
   };
 
   return (
